@@ -1,8 +1,8 @@
-    - name: Ruby | Sets global rbenv version
-      action: shell cd; bash -lc "rbenv global {{ ruby_version }}"
-      when: "'ruby_current_version.stdout' != 'ruby.current'"
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Sets global rbenv version
+  action: shell cd; bash -lc "rbenv global {{ version }}"
+  when: "'version' == 'ruby_default' and 'ruby_current_version.stdout' != 'ruby_default'"
+  tags:
+    - ruby
+    - ruby:install
+    - install
 

@@ -1,35 +1,35 @@
-    - name: Ruby | Installs rbenv
-      action: git repo=git://github.com/sstephenson/rbenv.git dest=~{{ ruby.deploy_user }}/.rbenv
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Installs rbenv
+  action: git repo=git://github.com/sstephenson/rbenv.git dest=~{{ ruby_deploy_user }}/.rbenv
+  tags:
+    - ruby
+    - ruby:install
+    - install
 
-    - name: Ruby | Installs rbenv bash file
-      copy: src=bash_50_rbenv dest=~{{ ruby.deploy_user }}/.bash_50_rbenv mode=700 owner={{ ruby.deploy_user }}
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Installs rbenv bash file
+  copy: src=bash_50_rbenv dest=~{{ ruby_deploy_user }}/.bash_50_rbenv mode=700 owner={{ ruby_deploy_user }}
+  tags:
+    - ruby
+    - ruby:install
+    - install
 
-    - name: Ruby | Source rbenv bash file in dot bashrc
-      lineinfile: dest=~{{ ruby.deploy_user }}/.bashrc regexp="^source \.bash_50_rbenv" insertafter=EOF line="source .bash_50_rbenv"
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Source rbenv bash file in dot bashrc
+  lineinfile: dest=~{{ ruby_deploy_user }}/.bashrc regexp="^source \.bash_50_rbenv" insertafter=EOF line="source .bash_50_rbenv"
+  tags:
+    - ruby
+    - ruby:install
+    - install
 
-    - name: Ruby | Creates plugin directory
-      action: file path=~{{ ruby.deploy_user }}/.rbenv/plugins/ owner={{ ruby.deploy_user }} group={{ ruby.deploy_user }} mode=0755 state=directory
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Creates plugin directory
+  action: file path=~{{ ruby_deploy_user }}/.rbenv/plugins/ owner={{ ruby_deploy_user }} group={{ ruby_deploy_user }} mode=0755 state=directory
+  tags:
+    - ruby
+    - ruby:install
+    - install
 
-    - name: Ruby | Installs ruby-build
-      action: git repo=git://github.com/sstephenson/ruby-build.git dest=~{{ ruby.deploy_user }}/.rbenv/plugins/ruby-build
-      tags:
-        - ruby
-        - ruby:install
-        - install
+- name: Ruby | Installs ruby-build
+  action: git repo=git://github.com/sstephenson/ruby-build.git dest=~{{ ruby_deploy_user }}/.rbenv/plugins/ruby-build
+  tags:
+    - ruby
+    - ruby:install
+    - install
 

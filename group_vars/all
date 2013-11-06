@@ -1,39 +1,41 @@
-ruby:
-  install: yes
-  # Which user do we want to install ruby for
-  deploy_user: vagrant
-  # Which versions we want to install (see `rbenv install -l`)
-  versions:
+# Which user do we want to install ruby for
+ruby_deploy_user: vagrant
+
+# Which versions we want to install (see `rbenv install -l`)
+ruby_versions:
     - 1.9.3-p448
     - 2.0.0-p247
-  # The default version (used with `rbenv global`)
-  default: "2.0.0-p247"
-  # Dependencies required to build ruby
-  deps: 
-    - autoconf 
-    - automake 
-    - bison 
-    - build-essential 
-    - curl 
-    - exuberant-ctags 
-    - git-core
-    - libreadline6 
-    - libreadline6-dev 
-    - libreadline-dev
-    - libsqlite3-0 
-    - libsqlite3-dev 
-    - libssl-dev 
-    - libyaml-dev 
-    - libc6-dev 
-    - libncurses5-dev
-    - libtool
-    - libxml2-dev 
-    - libxslt1-dev 
-    - openssl 
-    - sqlite3 
-    - subversion 
-    - zlib1g 
-    - zlib1g-dev 
+
+# The default version (used with `rbenv global`)
+ruby_default: "1.9.3-p448"
+
+# Dependencies required to build ruby
+# YMMV if you want something else than MRI
+ruby_deps:
+  - autoconf
+  - automake
+  - bison
+  - build-essential
+  - curl
+  - exuberant-ctags
+  - git-core
+  - libreadline6
+  - libreadline6-dev
+  - libreadline-dev
+  - libsqlite3-0
+  - libsqlite3-dev
+  - libssl-dev
+  - libyaml-dev
+  - libc6-dev
+  - libncurses5-dev
+  - libtool
+  - libxml2-dev
+  - libxslt1-dev
+  - openssl
+  - sqlite3
+  - subversion
+  - zlib1g
+  - zlib1g-dev
 
 
 
