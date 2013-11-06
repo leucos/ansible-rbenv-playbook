@@ -50,7 +50,7 @@ Check with :
 
 # Misc
 
-Thanks to Ansible's Google Groups fellow for their help on this, and
+Thanks to Ansible's Google Groups fellows for their help on this, and
 especially Jerome Wagner for the role prereq trick.
 Hack away, send PRs !
 
