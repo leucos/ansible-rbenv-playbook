@@ -7,7 +7,7 @@ ruby_versions:
     - 2.0.0-p247
 
 # The default version (used with `rbenv global`)
-ruby_default: "1.9.3-p448"
+ruby_default: "2.0.0-p247"
 
 # Dependencies required to build ruby
 # YMMV if you want something else than MRI

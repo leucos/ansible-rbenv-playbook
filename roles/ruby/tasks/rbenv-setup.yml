@@ -13,7 +13,7 @@
     - install
 
 - name: Ruby | Source rbenv bash file in dot bashrc
-  lineinfile: dest=~{{ ruby_deploy_user }}/.bashrc regexp="^source \.bash_50_rbenv" insertafter=EOF line="source .bash_50_rbenv"
+  lineinfile: dest=~{{ ruby_deploy_user }}/.bash_profile regexp="^source \.bash_50_rbenv" insertafter=EOF line="source .bash_50_rbenv" create=yes
   tags:
     - ruby
     - ruby:install
