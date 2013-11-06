@@ -1,0 +1,8 @@
+---
+    - name: Ruby | Adds .gemrc
+      action: copy src=gemrc dest=~{{ ruby.deploy_user }}/.gemrc owner={{ ruby.deploy_user }} group={{ ruby.deploy_user }} mode=0750
+      tags:
+        - ruby
+        - ruby:config
+        - config
+

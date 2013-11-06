@@ -1,0 +1,4 @@
+- hosts: ruby*
+  roles:
+    - { role: ruby-multi, versions: $ruby.versions }
+    #- { role: ruby-multi, versions: [ "{{ ruby.versions }}" ] }
