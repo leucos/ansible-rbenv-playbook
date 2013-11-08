@@ -1,7 +1,8 @@
 ---
 dependencies:
-  - { role: ruby, version: "{{ versions[0] }}", when: "0 < versions|length" }
+  - { role: ruby, version: "{{ versions[0] }}", ruby_default: "{{ versions[0] }}", when: "0 < versions|length" }
   - { role: ruby, version: "{{ versions[1] }}", when: "1 < versions|length" }
   - { role: ruby, version: "{{ versions[2] }}", when: "2 < versions|length" }
   - { role: ruby, version: "{{ versions[3] }}", when: "3 < versions|length" }
   - { role: ruby, version: "{{ versions[4] }}", when: "4 < versions|length" }
+
