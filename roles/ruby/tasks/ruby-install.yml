@@ -8,7 +8,7 @@
 
 - name: Ruby | Installs ruby
   action: shell cd; bash -lc "rbenv install {{ version }}"
-  when: ruby_is_installed.stdout != version
+  when: ruby_is_installed is not defined 
   # Takes no more than 600 secs on a small VM
   async: 600
   poll: 30
