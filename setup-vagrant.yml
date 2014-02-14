@@ -2,20 +2,7 @@
   sudo: True
   
   tasks:
-    # This should work too / #2372
-    # - name: Pushes user key to root's on vagrant boxes
-    #   action: authorized_key key=$FILE($item) user=root
-    #   first_available_file:
-    #     - ~/.ssh/id_dsa.pub
-    #     - ~/.ssh/id_rsa.pub
-
-    - name: Creates destination directory
-      # Workaround for #2372
-      file: state=directory mode=0700 dest=/root/.ssh/
-
     - name: Pushes user's rsa key to users on vagrant box (it's ok if this TASK fails)
-      # action: authorized_key user=root key='$FILE(~/.ssh/id_rsa.pub)'
-      # Workaround for #2372
       authorized_key: user={{ item }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
       register: rsa
       ignore_errors: yes
