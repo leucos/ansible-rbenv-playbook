@@ -10,7 +10,7 @@ ruby_versions:
     - 2.1.0
 
 # The default version (used with `rbenv global`)
-ruby_default: "2.0.1"
+ruby_default: "2.0.0-p353"
 
 # Dependencies required to build ruby
 # YMMV if you want something else than MRI

@@ -1,4 +1,5 @@
 - hosts: ruby*
   roles:
+    - role: rbenv
     - role: ruby-multi
       versions: $ruby_versions

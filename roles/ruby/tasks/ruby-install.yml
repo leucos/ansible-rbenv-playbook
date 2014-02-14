@@ -12,6 +12,7 @@
   # Takes no more than 600 secs on a small VM
   async: 600
   poll: 30
+  notify: Sets global ruby version
   tags:
     - ruby
     - ruby:install

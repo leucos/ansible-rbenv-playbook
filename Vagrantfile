@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       # Required to "warm up" the network
       # God knows why this is required
       (10..11).each do |ip|
-        system("ping -c2 192.168.33.#{ip} > /dev/null")
+        system("ping -c4 192.168.33.#{ip} > /dev/null")
       end
       ansible.playbook = "setup-vagrant.yml"
       ansible.host_key_checking = false

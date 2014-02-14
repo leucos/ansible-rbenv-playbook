@@ -1,5 +1,8 @@
-# Installing required ruby versions
-- include: ruby-install.yml ruby_version={{ version }}
+# Common prereqs (e.g. build tools, libs)
+- include: common-prereqs.yml
+
+# rbenv setup
+- include: rbenv-setup.yml
   sudo: yes
   sudo_user: "{{ ruby_deploy_user }}"
 
