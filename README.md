@@ -4,13 +4,17 @@ Ruby/Rbenv with Ansible
 This playbok demonstrates (ab)using roles to install several ruby
 versions via rbenv.
 
+# Pre-requisites
+
+[Vagrant 1.3.5+](https://docs.vagrantup.com/v2/)
+[Virtualbox](https://www.virtualbox.org/)
+[Ansible 1.4+](https://ansible.com)
+
 # "Quick" start
 
-    export ANSIBLE_HOST_KEY_CHECKING=false
     vagrant up
-    until ping -c1 192.168.33.10 > /dev/null && ping -c1 192.168.33.11 >/dev/null; do sleep 1; done
     ansible-playbook -i hosts ruby.yml
-    for i in 0 1; do echo -n ruby$i:" "; vagrant ssh ruby$i -c 'rbenv version'; done
+    ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
 
 # Vagrant
 
@@ -29,15 +33,9 @@ get a newer vagrant version (1.3.5+) or issue :
 
 before redoing a `vagrant up`.
 
-Warm up machines network :
-
-    until ping -c1 192.168.33.10 > /dev/null && ping -c1 192.168.33.11 >/dev/null; do
-      sleep 1
-    done
-
 # The playbook
 
-    ansible-playbook -i hosts ruby.yml -sku vagrant
+    ansible-playbook -i hosts ruby.yml
 
 will make your computer fans scream and cores smoke. Eventually, it will
 install MRI 1.9.3-p448 and 2.0.0-p247 on both hosts with 2.0.0-p247
@@ -45,7 +43,7 @@ being the default Ruby on ruby0, and 1.9.3-p448 on ruby1.
 
 You can check what happened with :
 
-    for i in 0 1; do echo -n ruby$i:" "; vagrant ssh ruby$i -c 'rbenv version'; done
+    ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
 
 # Misc
 

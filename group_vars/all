@@ -7,7 +7,7 @@ ruby_deploy_user: vagrant
 # Which versions we want to install (see `rbenv install -l`)
 ruby_versions:
     - 2.0.0-p353
-    - 2.0.1
+    - 2.1.0
 
 # The default version (used with `rbenv global`)
 ruby_default: "2.0.1"
