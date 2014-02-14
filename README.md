@@ -15,7 +15,7 @@ versions via rbenv.
 ```bash
 vagrant up
 ansible-playbook -i hosts ruby.yml
-ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant -c ssh
+ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant 
 ```
 
 ## Vagrant
@@ -54,7 +54,7 @@ being the default Ruby on ruby0, and 2.1.0 on ruby1.
 You can check what happened with :
 
 ```bash
-ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant -c ssh
+ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
 ```
 
 ## Thanks
