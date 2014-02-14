@@ -1,3 +1,3 @@
 # Default ruby for ruby1 box
-ruby_default: "1.9.3-p448"
+ruby_default: "2.1.0"
 
