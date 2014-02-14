@@ -13,21 +13,27 @@
       # Workaround for #2372
       file: state=directory mode=0700 dest=/root/.ssh/
 
-    - name: Pushes user's rsa key to root's vagrant box (it's ok if this TASK fails)
+    - name: Pushes user's rsa key to users on vagrant box (it's ok if this TASK fails)
       # action: authorized_key user=root key='$FILE(~/.ssh/id_rsa.pub)'
       # Workaround for #2372
-      action: copy src=~/.ssh/id_rsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
+      authorized_key: user={{ item }} key="{{ lookup('file', '~/.ssh/id_rsa.pub') }}"
       register: rsa
       ignore_errors: yes
+      with_items:
+        - root
+        - vagrant
 
-    - name: Pushes user's dsa key to root's vagrant box (it's NOT ok if both TASKs fail)
+    - name: Pushes user's dsa key to users on vagrant box (it's NOT ok if both TASKs fail)
       # action: authorized_key user=root key='$FILE(~/.ssh/id_dsa.pub)'
       # Workaround for #2372
-      action: copy src=~/.ssh/id_dsa.pub dest=/root/.ssh/authorized_keys owner=root mode=0600
+      authorized_key: user={{ item }} key="{{ lookup('file', '~/.ssh/id_dsa.pub') }}"
       when: rsa|failed
+      with_items:
+        - root
+        - vagrant
 
     - name: Checks if resolver is working properly (issues with some VBox/Host OS combinations)
-      action: command host -t A ansible.cc
+      action: command host -t A ansible.com
       register: ns
       ignore_errors: yes
 
@@ -36,5 +42,5 @@
       when: ns|failed
 
     - name: Checks if resolver is working properly with new nameserver
-      action: command host -t A ansible.cc
+      action: command host -t A ansible.com
 

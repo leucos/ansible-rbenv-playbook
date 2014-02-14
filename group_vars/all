@@ -1,13 +1,16 @@
+# Fill if needed
+rbenv_makeopts: ""
+
 # Which user do we want to install ruby for
 ruby_deploy_user: vagrant
 
 # Which versions we want to install (see `rbenv install -l`)
 ruby_versions:
-    - 1.9.3-p448
-    - 2.0.0-p247
+    - 2.0.0-p353
+    - 2.0.1
 
 # The default version (used with `rbenv global`)
-ruby_default: "2.0.0-p247"
+ruby_default: "2.0.1"
 
 # Dependencies required to build ruby
 # YMMV if you want something else than MRI

@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
       machine.vm.network :private_network, ip: ip
       machine.vm.provider "virtualbox" do |v|
           v.name = name
-          v.customize ["modifyvm", :id, "--memory", 200]
+          v.customize ["modifyvm", :id, "--memory", 512]
       end
       config.vm.provision "ansible" do |ansible|
         ansible.playbook = "setup-vagrant.yml"

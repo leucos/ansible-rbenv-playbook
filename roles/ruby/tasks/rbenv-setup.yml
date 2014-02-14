@@ -1,33 +1,36 @@
-- name: Ruby | Installs rbenv
-  action: git repo=git://github.com/sstephenson/rbenv.git dest=~{{ ruby_deploy_user }}/.rbenv
+- name: Installs rbenv
+  git: repo=git://github.com/sstephenson/rbenv.git dest=~{{ ruby_deploy_user }}/.rbenv
   tags:
     - ruby
     - ruby:install
     - install
 
-- name: Ruby | Installs rbenv bash file
-  copy: src=bash_50_rbenv dest=~{{ ruby_deploy_user }}/.bash_50_rbenv mode=700 owner={{ ruby_deploy_user }}
+- name: Ensure fragments bash dir exists
+  file: dest=~{{ ruby_deploy_user }}/.bash.d/ state=directory
+
+- name: Installs rbenv bash file
+  copy: src=50_rbenv.bash dest=~{{ ruby_deploy_user }}/.bash.d/50_rbenv.bash mode=700 owner={{ ruby_deploy_user }}
   tags:
     - ruby
     - ruby:install
     - install
 
-- name: Ruby | Source rbenv bash file in dot bashrc
-  lineinfile: dest=~{{ ruby_deploy_user }}/.bash_profile regexp="^source \.bash_50_rbenv" insertafter=EOF line="source .bash_50_rbenv" create=yes
+- name: Source rbenv bash file in dot bashrc
+  lineinfile: dest=~{{ ruby_deploy_user }}/.bash_profile regexp="rbenv" insertafter=EOF line="source ~/.bash.d/50_rbenv.bash" create=yes
   tags:
     - ruby
     - ruby:install
     - install
 
-- name: Ruby | Creates plugin directory
-  action: file path=~{{ ruby_deploy_user }}/.rbenv/plugins/ owner={{ ruby_deploy_user }} group={{ ruby_deploy_user }} mode=0755 state=directory
+- name: Creates plugin directory
+  file: path=~{{ ruby_deploy_user }}/.rbenv/plugins/ owner={{ ruby_deploy_user }} group={{ ruby_deploy_user }} mode=0755 state=directory
   tags:
     - ruby
     - ruby:install
     - install
 
-- name: Ruby | Installs ruby-build
-  action: git repo=git://github.com/sstephenson/ruby-build.git dest=~{{ ruby_deploy_user }}/.rbenv/plugins/ruby-build
+- name: Installs ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git dest=~{{ ruby_deploy_user }}/.rbenv/plugins/ruby-build
   tags:
     - ruby
     - ruby:install

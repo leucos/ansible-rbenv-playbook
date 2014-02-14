@@ -1,5 +1,5 @@
-- name: Ruby | Installs ruby building dependencies
-  action: apt name={{ item }} state=installed update-cache=yes
+- name: Installs ruby building dependencies
+  apt: name={{ item }} state=installed update-cache=yes
   with_items: ruby_deps
   tags:
     - ruby
