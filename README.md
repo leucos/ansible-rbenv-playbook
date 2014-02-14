@@ -4,48 +4,60 @@ Ruby/Rbenv with Ansible
 This playbok demonstrates (ab)using roles to install several ruby
 versions via rbenv.
 
-# Pre-requisites
+## Pre-requisites
 
-[Vagrant 1.3.5+](https://docs.vagrantup.com/v2/)
-[Virtualbox](https://www.virtualbox.org/)
-[Ansible 1.4+](https://ansible.com)
+* [Vagrant 1.3.5+](https://docs.vagrantup.com/v2/)
+* [Virtualbox](https://www.virtualbox.org/)
+* [Ansible 1.4+](https://ansible.com)
 
-# "Quick" start
+## "Quick" start
 
-    vagrant up
-    ansible-playbook -i hosts ruby.yml
-    ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
+```bash
+vagrant up
+ansible-playbook -i hosts ruby.yml
+ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
+```
 
-# Vagrant
+## Vagrant
 
 A Vagrantfile is provided for testing purposes. It will create two VMs,
 and provision them with ansible.
 
-    vagrant up
+```bash
+vagrant up
+```
 
 If you encounter this error :
 
-    fatal: [ruby1] => {'msg': "FAILED: (25, 'Inappropriate ioctl for device')", 'failed': True}
+```
+fatal: [ruby1] => {'msg': "FAILED: (25, 'Inappropriate ioctl for device')", 'failed': True}
+```
 
 get a newer vagrant version (1.3.5+) or issue :
 
-    export ANSIBLE_HOST_KEY_CHECKING=false
+```bash
+export ANSIBLE_HOST_KEY_CHECKING=false
+```
 
 before redoing a `vagrant up`.
 
-# The playbook
+## The playbook
 
-    ansible-playbook -i hosts ruby.yml
+```bash
+ansible-playbook -i hosts ruby.yml
+```
 
 will make your computer fans scream and cores smoke. Eventually, it will
-install MRI 1.9.3-p448 and 2.0.0-p247 on both hosts with 2.0.0-p247
-being the default Ruby on ruby0, and 1.9.3-p448 on ruby1.
+install MRI 2.1.0 and 2.0.0-p353 on both hosts with 2.0.0-p353
+being the default Ruby on ruby0, and 2.1.0 on ruby1.
 
 You can check what happened with :
 
-    ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
+```bash
+ansible all -i hosts -m command -a 'bash -lc "rbenv versions"' -u vagrant
+```
 
-# Misc
+## Thanks
 
 Thanks to Ansible's Google Groups fellows for their help on this, and
 especially Jerome Wagner for the role prereq trick.
