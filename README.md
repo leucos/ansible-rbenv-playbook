@@ -1,6 +1,11 @@
 Ruby/Rbenv with Ansible
 =======================
 
+# NOTE: this stuff is deprecated
+
+Take a look at [erasme.rbenv](https://github.com/erasme/ansible-rbenv)
+instead.
+
 This playbok demonstrates (ab)using roles to install several ruby
 versions via rbenv.
 
